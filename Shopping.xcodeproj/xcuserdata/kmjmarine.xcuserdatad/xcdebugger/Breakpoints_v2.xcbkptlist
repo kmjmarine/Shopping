@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "4219FCE6-2A80-4FD0-9C5B-7F98DDA994D5"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "292AA39B-ED20-4246-9AF4-A15563BB455A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shopping/Scenes/ShopList/ShopListCollectionViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "292AA39B-ED20-4246-9AF4-A15563BB455A - 545bcb1f9d111e3b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shopping.ShopListCollectionViewCell.init(frame: __C.CGRect, collectionViewLayout: __C.UICollectionViewLayout) -&gt; Shopping.ShopListCollectionViewCell"
+                  moduleName = "Shopping"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kmjmarine/Desktop/testprojects2/Shopping/Shopping/Scenes/ShopList/ShopListCollectionViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "180">
+               </Location>
+               <Location
+                  uuid = "292AA39B-ED20-4246-9AF4-A15563BB455A - fea449540f11a3e0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Shopping.ShopListCollectionViewCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Shopping.ShopListCollectionViewCell&gt;"
+                  moduleName = "Shopping"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kmjmarine/Desktop/testprojects2/Shopping/Shopping/Scenes/ShopList/ShopListCollectionViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "120">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
