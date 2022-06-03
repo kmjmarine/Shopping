@@ -64,6 +64,15 @@ final class ShopListTableViewCell: UITableViewCell {
         
         return label
     }()
+    
+    func setup(shop: Shop) {
+        setupLayout()
+        
+        accessoryType = .disclosureIndicator
+        selectionStyle = .none
+        
+        titleLabel.text = shop.title.htmlToString
+    }
 }
 
 private extension ShopListTableViewCell {
