@@ -85,8 +85,9 @@ extension ShopListViewController: ShopListProtocol {
         searchResultTableView.reloadData()
     }
     
-    func pushToShopViewController(with shop: Shop) {
-        //let shopDetailViewController
+    func pushToShopViewContoller(with shop: Shop) {
+        let shopDetailViewController = ShopWebViewController(shop: shop)
+        navigationController?.pushViewController(shopDetailViewController, animated: true)
     }
     
     func endRefreshing() {

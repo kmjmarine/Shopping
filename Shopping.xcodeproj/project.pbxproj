@@ -26,6 +26,7 @@
 		E5BCFBC32848925A001AB5AF /* ShopSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BCFBC22848925A001AB5AF /* ShopSearchManager.swift */; };
 		E5BCFBC62848C068001AB5AF /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BCFBC52848C068001AB5AF /* String+.swift */; };
 		E5BCFBCD28498EA6001AB5AF /* ShopWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BCFBCC28498EA6001AB5AF /* ShopWebViewController.swift */; };
+		E5BCFBCF2849BACB001AB5AF /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BCFBCE2849BACB001AB5AF /* UserDefaultsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		E5BCFBC22848925A001AB5AF /* ShopSearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopSearchManager.swift; sourceTree = "<group>"; };
 		E5BCFBC52848C068001AB5AF /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		E5BCFBCC28498EA6001AB5AF /* ShopWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopWebViewController.swift; sourceTree = "<group>"; };
+		E5BCFBCE2849BACB001AB5AF /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				E5BCFBC22848925A001AB5AF /* ShopSearchManager.swift */,
+				E5BCFBCE2849BACB001AB5AF /* UserDefaultsManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 			files = (
 				E5BB9961284766A000390916 /* ShopListPresenter.swift in Sources */,
 				E5BB9963284773E200390916 /* ShopListTableViewCell.swift in Sources */,
+				E5BCFBCF2849BACB001AB5AF /* UserDefaultsManager.swift in Sources */,
 				E5BCFBC62848C068001AB5AF /* String+.swift in Sources */,
 				E5BCFBC32848925A001AB5AF /* ShopSearchManager.swift in Sources */,
 				E5BCFBCD28498EA6001AB5AF /* ShopWebViewController.swift in Sources */,

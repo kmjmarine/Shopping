@@ -11,6 +11,8 @@ protocol ShopListProtocol: AnyObject {
     func setupNavigationBar()
     func setupSearchBar()
     func setupViews()
+    func updateSearchTableView(isHidden: Bool)
+    func pushToShopViewContoller(with shop: Shop)
     func endRefreshing()
     func reloadTableView()
 }
@@ -24,6 +26,7 @@ final class ShopListPresenter: NSObject {
     private let displayCount: Int = 20
     
     private var shopList: [Shop] = [ ]
+    private var currentShopSearchResult: [Shop] = [ ]
     
     init(viewController: ShopListProtocol, shopSearchManager: ShopSearchManagerProtocol = ShopSearchManager()) {
         self.viewController = viewController
@@ -42,15 +45,31 @@ final class ShopListPresenter: NSObject {
 }
 
 extension ShopListPresenter: UISearchBarDelegate {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        viewController?.updateSearchTableView(isHidden: false)
+    }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        currentShopSearchResult = [ ]
+        viewController?.updateSearchTableView(isHidden: false)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        shopSearchManager.request(from: searchText, start: (currentPage * displayCount) + 1, display: displayCount) { [weak self] newValue in
+            self?.currentShopSearchResult = newValue
+            self?.viewController?.updateSearchTableView(isHidden: true)
+//            self?.shopList += newValue
+//            self?.currentPage += 1
+//            self?.viewController?.reloadTableView()
+//            self?.viewController?.endRefreshing()
+        }
+    }
 }
 
 extension ShopListPresenter: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let shop = shopList[indexPath.row]
-        /***
-         게시글 탭시 이동
-         ***/
+        viewController?.pushToShopViewContoller(with: shop)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
