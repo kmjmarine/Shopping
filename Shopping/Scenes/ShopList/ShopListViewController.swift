@@ -50,6 +50,10 @@ final class ShopListViewController: UIViewController {
                 print(shopArray)
             }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        presenter.viewWillAppear()
+    }
 }
 
 extension ShopListViewController: ShopListProtocol {
@@ -86,8 +90,8 @@ extension ShopListViewController: ShopListProtocol {
     }
     
     func pushToShopViewContoller(with shop: Shop) {
-        let shopDetailViewController = ShopWebViewController(shop: shop)
-        navigationController?.pushViewController(shopDetailViewController, animated: true)
+        let shopWebViewController = ShopWebViewController(shop: shop)
+        navigationController?.pushViewController(shopWebViewController, animated: true)
     }
     
     func endRefreshing() {

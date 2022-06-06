@@ -19,6 +19,7 @@ protocol ShopListProtocol: AnyObject {
 
 final class ShopListPresenter: NSObject {
     private weak var viewController: ShopListProtocol?
+    private let userDefaultsManager: UserDefaultsManagerProtocol
     private let shopSearchManager: ShopSearchManagerProtocol
     
     private var currentKeyword = "이어폰"
@@ -28,8 +29,14 @@ final class ShopListPresenter: NSObject {
     private var shopList: [Shop] = [ ]
     private var currentShopSearchResult: [Shop] = [ ]
     
-    init(viewController: ShopListProtocol, shopSearchManager: ShopSearchManagerProtocol = ShopSearchManager()) {
+    private var likedShop: [Shop] = [ ]
+    
+    init(
+        viewController: ShopListProtocol,
+        userDefaultsManager: UserDefaultsManagerProtocol = UserDefaultsManager(),
+        shopSearchManager: ShopSearchManagerProtocol = ShopSearchManager()) {
         self.viewController = viewController
+        self.userDefaultsManager = userDefaultsManager
         self.shopSearchManager = shopSearchManager
     }
     
@@ -37,6 +44,11 @@ final class ShopListPresenter: NSObject {
         viewController?.setupNavigationBar()
         viewController?.setupSearchBar()
         viewController?.setupViews()
+    }
+    
+    func viewWillAppear() {
+        likedShop = userDefaultsManager.getShops()
+        viewController?.reloadTableView()
     }
     
     func didCalledRefresh() {
@@ -51,13 +63,13 @@ extension ShopListPresenter: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         currentShopSearchResult = [ ]
-        viewController?.updateSearchTableView(isHidden: false)
+        viewController?.updateSearchTableView(isHidden: true)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         shopSearchManager.request(from: searchText, start: (currentPage * displayCount) + 1, display: displayCount) { [weak self] newValue in
             self?.currentShopSearchResult = newValue
-            self?.viewController?.updateSearchTableView(isHidden: true)
+            self?.viewController?.updateSearchTableView(isHidden: false)
 //            self?.shopList += newValue
 //            self?.currentPage += 1
 //            self?.viewController?.reloadTableView()
@@ -68,7 +80,7 @@ extension ShopListPresenter: UISearchBarDelegate {
 
 extension ShopListPresenter: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let shop = shopList[indexPath.row]
+        let shop = currentShopSearchResult[indexPath.row]
         viewController?.pushToShopViewContoller(with: shop)
     }
     
@@ -86,16 +98,28 @@ extension ShopListPresenter: UITableViewDelegate {
 
 extension ShopListPresenter: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        shopList.count
+        currentShopSearchResult.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ShopListTableViewCell.identifier, for: indexPath) as? ShopListTableViewCell
+//        let cell = searchResultTableView.dequeueReusableCell(withIdentifier: ShopListTableViewCell.identifier, for: indexPath) as? ShopListTableViewCell
+//
+//        let shop = shopList[indexPath.row]
+//        cell?.setup(shop: shop)
+//
+//        return UITableViewCell()
         
-        let shop = shopList[indexPath.row]
-        cell?.setup(shop: shop)
+        let cell = UITableViewCell()
+        let resultTitle = currentShopSearchResult[indexPath.row].title
         
-        return UITableViewCell()
+        cell.textLabel?.text = resultTitle.htmlToString
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didselectRowAt indexPath: IndexPath) {
+        let shop = currentShopSearchResult[indexPath.item]
+        viewController?.pushToShopViewContoller(with: shop)
     }
 }
 

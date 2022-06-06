@@ -35,11 +35,14 @@ final class ShopWebViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
+        
+        setupNavigationBar()
+        setupWebView()
     }
 }
 
 private extension ShopWebViewController {
-    func setupnavigationBar() {
+    func setupNavigationBar() {
         navigationItem.title = shop.title.htmlToString
         navigationItem.rightBarButtonItem = rightBatButtonItem
     }
