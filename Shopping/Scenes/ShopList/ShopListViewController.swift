@@ -22,12 +22,12 @@ final class ShopListViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.delegate = presenter
-        tableView.dataSource = presenter
-        
-        tableView.register(ShopListTableViewCell.self, forCellReuseIdentifier: ShopListTableViewCell.identifier)
-        
-        tableView.refreshControl = refreshControl
+//        tableView.delegate = presenter
+//        tableView.dataSource = presenter
+//        
+//        tableView.register(
+//            ShopListTableViewCell.self,
+//            forCellReuseIdentifier: ShopListTableViewCell.identifier)
         
         return tableView
     }()
@@ -36,6 +36,10 @@ final class ShopListViewController: UIViewController {
         let tableView = UITableView()
         tableView.delegate = presenter
         tableView.dataSource = presenter
+        
+        tableView.register(
+            ShopListTableViewCell.self,
+            forCellReuseIdentifier: ShopListTableViewCell.identifier)
         
         return tableView
     }()

@@ -48,7 +48,7 @@ private extension ShopWebViewController {
     }
     
     func setupWebView() {
-        guard let linkURL = URL(string: shop.link) else {
+        guard let linkURL = URL(string: shop.link.replacingOccurrences(of: "search.shopping.naver.com/gate.nhn?id=", with: "msearch.shopping.naver.com/product/")) else {
             navigationController?.popViewController(animated: true)
             return
         }
@@ -56,7 +56,7 @@ private extension ShopWebViewController {
         view = webView
         
         let urlRequest = URLRequest(url: linkURL)
-        
+       
         webView.load(urlRequest)
     }
     

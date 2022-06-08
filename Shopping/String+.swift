@@ -24,4 +24,15 @@ extension String {
             return ""
         }
     }
+    
+    var withComma: String {
+        let value = Int(self)!
+        
+        let decimalFomatter = NumberFormatter()
+        decimalFomatter.numberStyle = NumberFormatter.Style.decimal
+        decimalFomatter.groupingSeparator = ","
+        decimalFomatter.groupingSize = 3
+        
+        return decimalFomatter.string(from: NSNumber(value: value)) ??  self
+    }
 }

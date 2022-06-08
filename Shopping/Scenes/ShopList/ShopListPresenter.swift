@@ -102,19 +102,12 @@ extension ShopListPresenter: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = searchResultTableView.dequeueReusableCell(withIdentifier: ShopListTableViewCell.identifier, for: indexPath) as? ShopListTableViewCell
-//
-//        let shop = shopList[indexPath.row]
-//        cell?.setup(shop: shop)
-//
-//        return UITableViewCell()
-        
-        let cell = UITableViewCell()
-        let resultTitle = currentShopSearchResult[indexPath.row].title
-        
-        cell.textLabel?.text = resultTitle.htmlToString
-        
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ShopListTableViewCell.identifier, for: indexPath) as? ShopListTableViewCell
+
+        let shop = currentShopSearchResult[indexPath.row]
+        cell?.setup(shop: shop)
+
+        return cell ?? UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didselectRowAt indexPath: IndexPath) {
