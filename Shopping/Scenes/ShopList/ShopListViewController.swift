@@ -103,7 +103,7 @@ extension ShopListViewController: ShopListProtocol {
     }
     
     func reloadTableView() {
-        tableView.reloadData()
+        searchResultTableView.reloadData()
     }
 }
 

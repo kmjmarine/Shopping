@@ -28,7 +28,15 @@ final class ShopListTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var lpriceLabel: UILabel = {
+    private lazy var priceTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 15.0, weight: .medium)
+        label.textColor = .systemRed
+        
+        return label
+    }()
+    
+    private lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16.0, weight: .bold)
         label.textColor = .systemRed
@@ -36,15 +44,7 @@ final class ShopListTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var hpriceLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 16.0, weight: .bold)
-        label.textColor = .systemRed
-        
-        return label
-    }()
-    
-    private lazy var mallNameLabel: UILabel = {
+    private lazy var brandLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14.0, weight: .semibold)
         
@@ -53,14 +53,8 @@ final class ShopListTableViewCell: UITableViewCell {
     
     private lazy var makerLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14.0, weight: .medium)
-        
-        return label
-    }()
-    
-    private lazy var brandLabel: UILabel = {
-        let label = UILabel()
         label.font = .systemFont(ofSize: 14.0, weight: .semibold)
+        label.textColor = .systemGreen
         
         return label
     }()
@@ -73,24 +67,25 @@ final class ShopListTableViewCell: UITableViewCell {
         
         thumbNailImageView.kf.setImage(with: shop.imageURL)
         titleLabel.text = shop.title.htmlToString
-        lpriceLabel.text = shop.lprice.withComma + "원"
+        priceTitleLabel.text = "최저 "
+        priceLabel.text = shop.lprice.withComma + "원"
         brandLabel.text = shop.brand
         makerLabel.text = shop.maker
-        mallNameLabel.text = shop.mallName
     }
 }
 
 private extension ShopListTableViewCell {
     func setupLayout() {
-        [thumbNailImageView, titleLabel, lpriceLabel, hpriceLabel, mallNameLabel, makerLabel, brandLabel]
+        [thumbNailImageView, titleLabel, priceLabel, priceTitleLabel, makerLabel, brandLabel]
             .forEach { addSubview($0) }
         
         let superViewInset: CGFloat = 16.0
+        let verticalSpacing: CGFloat = 4.0
         
         thumbNailImageView.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(superViewInset)
-            $0.top.equalToSuperview().inset(superViewInset)
-            $0.width.equalTo(50)
+            $0.centerY.equalToSuperview().inset(superViewInset)
+            $0.width.equalTo(70)
             $0.height.equalTo(thumbNailImageView.snp.width)
         }
         
@@ -100,18 +95,20 @@ private extension ShopListTableViewCell {
             $0.top.equalToSuperview().inset(superViewInset)
         }
         
-        let verticalSpacing: CGFloat = 4.0
-        
-        lpriceLabel.snp.makeConstraints {
+        priceTitleLabel.snp.makeConstraints {
             $0.leading.equalTo(titleLabel.snp.leading)
-            $0.trailing.equalTo(titleLabel.snp.trailing)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(verticalSpacing)
+        }
+        
+        priceLabel.snp.makeConstraints {
+            $0.leading.equalTo(priceTitleLabel.snp.trailing)
             $0.top.equalTo(titleLabel.snp.bottom).offset(verticalSpacing)
         }
         
         brandLabel.snp.makeConstraints {
             $0.leading.equalTo(titleLabel.snp.leading)
             $0.trailing.equalTo(titleLabel.snp.trailing)
-            $0.top.equalTo(lpriceLabel.snp.bottom).offset(verticalSpacing)
+            $0.top.equalTo(priceLabel.snp.bottom).offset(verticalSpacing)
             $0.bottom.equalToSuperview().inset(superViewInset)
         }
         

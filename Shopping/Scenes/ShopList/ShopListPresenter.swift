@@ -67,14 +67,8 @@ extension ShopListPresenter: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        shopSearchManager.request(from: searchText, start: (currentPage * displayCount) + 1, display: displayCount) { [weak self] newValue in
-            self?.currentShopSearchResult = newValue
-            self?.viewController?.updateSearchTableView(isHidden: false)
-//            self?.shopList += newValue
-//            self?.currentPage += 1
-//            self?.viewController?.reloadTableView()
-//            self?.viewController?.endRefreshing()
-        }
+        currentKeyword = searchText
+        requestShopList(isNeededReset: true)
     }
 }
 
@@ -125,6 +119,8 @@ private extension ShopListPresenter {
         shopSearchManager.request(from: currentKeyword, start: (currentPage * displayCount) + 1, display: displayCount) { [weak self] newValue in
             self?.shopList += newValue
             self?.currentPage += 1
+            self?.currentShopSearchResult = newValue
+            self?.viewController?.updateSearchTableView(isHidden: false)
             self?.viewController?.reloadTableView()
             self?.viewController?.endRefreshing()
         }
