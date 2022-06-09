@@ -85,7 +85,6 @@ extension ShopListPresenter: UITableViewDelegate {
         else {
             return
         }
-        
         requestShopList(isNeededReset: false)
     }
 }
@@ -119,7 +118,7 @@ private extension ShopListPresenter {
         shopSearchManager.request(from: currentKeyword, start: (currentPage * displayCount) + 1, display: displayCount) { [weak self] newValue in
             self?.shopList += newValue
             self?.currentPage += 1
-            self?.currentShopSearchResult = newValue
+            self?.currentShopSearchResult += newValue
             self?.viewController?.updateSearchTableView(isHidden: false)
             self?.viewController?.reloadTableView()
             self?.viewController?.endRefreshing()
