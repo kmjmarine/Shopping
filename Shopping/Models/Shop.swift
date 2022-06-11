@@ -12,7 +12,6 @@ struct Shop: Codable {
     let link: String
     private let image: String
     let lprice: String
-    let hprice: String
     let mallName: String
     let maker: String
     let brand: String
@@ -22,7 +21,7 @@ struct Shop: Codable {
     var imageURL: URL? { URL(string: image) }
 
     private enum CodingKeys: String, CodingKey {
-        case title, link, image, lprice, hprice, mallName, maker, brand
+        case title, link, image, lprice, mallName, maker, brand
     }
     
     init(from decoder: Decoder) throws {
@@ -32,7 +31,6 @@ struct Shop: Codable {
         link = try container.decodeIfPresent(String.self, forKey: .link) ?? "-"
         image = try container.decodeIfPresent(String.self, forKey: .image) ?? ""
         lprice = try container.decodeIfPresent(String.self, forKey: .lprice) ?? "0"
-        hprice = try container.decodeIfPresent(String.self, forKey: .hprice) ?? "0"
         mallName = try container.decodeIfPresent(String.self, forKey: .mallName) ?? "-"
         maker = try container.decodeIfPresent(String.self, forKey: .maker) ?? ""
         brand = try container.decodeIfPresent(String.self, forKey: .brand) ?? ""
@@ -45,7 +43,6 @@ struct Shop: Codable {
         link: String,
         imageURL: String,
         lprice: String,
-        hprice: String,
         mallName: String,
         maker: String,
         brand: String,
@@ -55,7 +52,6 @@ struct Shop: Codable {
         self.link = link
         self.image = imageURL
         self.lprice = lprice
-        self.hprice = hprice
         self.mallName = mallName
         self.maker = maker
         self.brand = brand

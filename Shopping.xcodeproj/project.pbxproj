@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E56CC3C028548F3500530F22 /* ShopWebViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CC3BF28548F3500530F22 /* ShopWebViewPresenter.swift */; };
 		E5BB991D284760F200390916 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BB991C284760F200390916 /* AppDelegate.swift */; };
 		E5BB991F284760F200390916 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BB991E284760F200390916 /* SceneDelegate.swift */; };
 		E5BB9926284760F300390916 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5BB9925284760F300390916 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E56CC3BF28548F3500530F22 /* ShopWebViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopWebViewPresenter.swift; sourceTree = "<group>"; };
 		E5BB9919284760F200390916 /* Shopping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shopping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5BB991C284760F200390916 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5BB991E284760F200390916 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				E5BCFBCC28498EA6001AB5AF /* ShopWebViewController.swift */,
+				E56CC3BF28548F3500530F22 /* ShopWebViewPresenter.swift */,
 			);
 			path = ShopDetail;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				E5BB995E2847664E00390916 /* ShopListViewController.swift in Sources */,
 				E5BB99652848830200390916 /* ShopRequestModel.swift in Sources */,
 				E5BB991D284760F200390916 /* AppDelegate.swift in Sources */,
+				E56CC3C028548F3500530F22 /* ShopWebViewPresenter.swift in Sources */,
 				E5BB99672848866500390916 /* ShopResponseModel.swift in Sources */,
 				E5BB991F284760F200390916 /* SceneDelegate.swift in Sources */,
 				E5BB996A284887D800390916 /* Shop.swift in Sources */,
@@ -536,7 +540,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -564,7 +568,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

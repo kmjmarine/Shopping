@@ -28,17 +28,17 @@ struct UserDefaultsManager: UserDefaultsManagerProtocol {
         var currentShops: [Shop] = getShops()
         currentShops.insert(newValue, at: 0)
         
-        saveMovie(currentShops)
+        saveShop(currentShops)
     }
     
     func removeShop(_ value: Shop) {
         let currentShops: [Shop] = getShops()
         let newValue = currentShops.filter { $0.title != value.title }
         
-        saveMovie(currentShops)
+        saveShop(currentShops)
     }
     
-    private func saveMovie(_ newValue: [Shop]) {
+    private func saveShop(_ newValue: [Shop]) {
         UserDefaults.standard.set(
             try? PropertyListEncoder().encode(newValue),
             forKey: Key.shop.rawValue

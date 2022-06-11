@@ -49,10 +49,10 @@ final class ShopListViewController: UIViewController {
         
         presenter.viewDidLoad()
         
-        ShopSearchManager()
-            .request(from: "노트북", start: 1, display: 20) { shopArray in
-                print(shopArray)
-            }
+//        ShopSearchManager()
+//            .request(from: "노트북", start: 1, display: 20) { shopArray in
+//                print(shopArray)
+//            }
     }
     
     override func viewWillAppear(_ animated: Bool) {

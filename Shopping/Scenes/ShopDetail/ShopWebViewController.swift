@@ -7,24 +7,23 @@
 
 import WebKit
 import UIKit
-import SnapKit
 
 final class ShopWebViewController: UIViewController {
-    private let shop: Shop
+    private var presenter: ShopWebViewPresenter!
     
     private let webView = WKWebView()
     
-    private let rightBatButtonItem = UIBarButtonItem(
-        image: UIImage(systemName: "link"),
+    private lazy var rightBatButtonItem = UIBarButtonItem(
+        image: UIImage(systemName: "star"),
         style: .plain,
         target: self,
-        action: #selector(didTapBarButtonItem)
+        action: #selector(didTapRightBarButtonItem)
     )
     
     init(shop: Shop) {
-        self.shop = shop
-        
         super.init(nibName: nil, bundle: nil)
+        
+        presenter = ShopWebViewPresenter(viewController: self, shop: shop)
     }
     
     required init?(coder: NSCoder) {
@@ -34,21 +33,20 @@ final class ShopWebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemBackground
-        
-        setupNavigationBar()
-        setupWebView()
+        presenter.viewDidLoad()
     }
 }
 
-private extension ShopWebViewController {
-    func setupNavigationBar() {
-        navigationItem.title = shop.title.htmlToString
+extension ShopWebViewController: ShopWebViewProtocol {
+    func setupNavigationBar(with title: String) {
+        view.backgroundColor = .systemBackground
+        
+        navigationItem.title = title.htmlToString
         navigationItem.rightBarButtonItem = rightBatButtonItem
     }
     
-    func setupWebView() {
-        guard let linkURL = URL(string: shop.link.replacingOccurrences(of: "search.shopping.naver.com/gate.nhn?id=", with: "msearch.shopping.naver.com/product/")) else {
+    func setupWebView(with link: String) {
+        guard let linkURL = URL(string: link.replacingOccurrences(of: "search.shopping.naver.com/gate.nhn?id=", with: "msearch.shopping.naver.com/product/")) else {
             navigationController?.popViewController(animated: true)
             return
         }
@@ -60,7 +58,14 @@ private extension ShopWebViewController {
         webView.load(urlRequest)
     }
     
-    @objc func didTapBarButtonItem() {
-        UIPasteboard.general.string = shop.link
+    func setRigthBarButton(with isLiked: Bool) {
+        let imageName = isLiked ? "star.fill" : "star"
+        rightBatButtonItem.image = UIImage(systemName: imageName)
+    }
+}
+
+extension ShopWebViewController {
+    @objc func didTapRightBarButtonItem() {
+        presenter.didTapRightBarButtonItem()
     }
 }

@@ -22,7 +22,7 @@ final class ShopListPresenter: NSObject {
     private let userDefaultsManager: UserDefaultsManagerProtocol
     private let shopSearchManager: ShopSearchManagerProtocol
     
-    private var currentKeyword = "이어폰"
+    private var currentKeyword = ""
     private var currentPage: Int = 0
     private let displayCount: Int = 20
     
@@ -96,7 +96,7 @@ extension ShopListPresenter: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ShopListTableViewCell.identifier, for: indexPath) as? ShopListTableViewCell
-
+     
         let shop = currentShopSearchResult[indexPath.row]
         cell?.setup(shop: shop)
 
@@ -114,6 +114,7 @@ private extension ShopListPresenter {
         if isNeededReset {
             currentPage = 0
             shopList = [ ]
+            self.currentShopSearchResult = [ ]
         }
         shopSearchManager.request(from: currentKeyword, start: (currentPage * displayCount) + 1, display: displayCount) { [weak self] newValue in
             self?.shopList += newValue
