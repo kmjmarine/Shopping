@@ -22,12 +22,12 @@ final class ShopListViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-//        tableView.delegate = presenter
-//        tableView.dataSource = presenter
-//        
-//        tableView.register(
-//            ShopListTableViewCell.self,
-//            forCellReuseIdentifier: ShopListTableViewCell.identifier)
+        tableView.delegate = presenter
+        tableView.dataSource = presenter
+        
+        tableView.register(
+            ShopListTableViewCell.self,
+            forCellReuseIdentifier: ShopListTableViewCell.identifier)
         
         return tableView
     }()
@@ -47,12 +47,10 @@ final class ShopListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter.viewDidLoad()
+        tableView.tag = 1
+        searchResultTableView.tag = 2
         
-//        ShopSearchManager()
-//            .request(from: "노트북", start: 1, display: 20) { shopArray in
-//                print(shopArray)
-//            }
+        presenter.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,6 +101,10 @@ extension ShopListViewController: ShopListProtocol {
     }
     
     func reloadTableView() {
+        tableView.reloadData()
+    }
+    
+    func reloadSearchTableView() {
         searchResultTableView.reloadData()
     }
 }

@@ -15,6 +15,7 @@ protocol ShopListProtocol: AnyObject {
     func pushToShopViewContoller(with shop: Shop)
     func endRefreshing()
     func reloadTableView()
+    func reloadSearchTableView()
 }
 
 final class ShopListPresenter: NSObject {
@@ -74,8 +75,13 @@ extension ShopListPresenter: UISearchBarDelegate {
 
 extension ShopListPresenter: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let shop = currentShopSearchResult[indexPath.row]
-        viewController?.pushToShopViewContoller(with: shop)
+        if tableView.tag == 1 {
+            let shop = likedShop[indexPath.row]
+            viewController?.pushToShopViewContoller(with: shop)
+        } else if tableView.tag == 2 {
+            let shop = currentShopSearchResult[indexPath.row]
+            viewController?.pushToShopViewContoller(with: shop)
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -91,15 +97,26 @@ extension ShopListPresenter: UITableViewDelegate {
 
 extension ShopListPresenter: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        currentShopSearchResult.count
+        if tableView.tag == 1 {
+            return likedShop.count
+        } else if tableView.tag == 2 {
+            return currentShopSearchResult.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ShopListTableViewCell.identifier, for: indexPath) as? ShopListTableViewCell
-     
-        let shop = currentShopSearchResult[indexPath.row]
-        cell?.setup(shop: shop)
-
+        
+        if tableView.tag == 1 {
+            let shop = likedShop[indexPath.row]
+            cell?.setup(shop: shop)
+        } else {
+            let shop = currentShopSearchResult[indexPath.row]
+            cell?.setup(shop: shop)
+        }
+       
         return cell ?? UITableViewCell()
     }
     
@@ -121,7 +138,7 @@ private extension ShopListPresenter {
             self?.currentPage += 1
             self?.currentShopSearchResult += newValue
             self?.viewController?.updateSearchTableView(isHidden: false)
-            self?.viewController?.reloadTableView()
+            self?.viewController?.reloadSearchTableView()
             self?.viewController?.endRefreshing()
         }
     }
