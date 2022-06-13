@@ -67,8 +67,10 @@ extension ShopListViewController: ShopListProtocol {
     
     func setupSearchBar() {
         searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "또 사제껴?"
         searchController.searchBar.delegate = presenter
         navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     func setupViews() {
