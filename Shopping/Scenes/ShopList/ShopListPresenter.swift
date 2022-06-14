@@ -58,7 +58,7 @@ final class ShopListPresenter: NSObject {
 }
 
 extension ShopListPresenter: UISearchBarDelegate {
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         viewController?.updateSearchTableView(isHidden: false)
     }
     
